@@ -1,0 +1,10 @@
+{
+  "files.autoSave": "afterDelay",
+  "editor.fontSize": 13,
+  "editor.renderWhitespace": "boundary",
+  "keyboard.touchbar.ignored": [
+    "workbench.action.debug.start",
+    "workbench.action.debug.run"
+  ],
+  "liveServer.settings.port": 5501
+}

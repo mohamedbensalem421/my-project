@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="./css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Interactive card details form</title>
+  </head>
+  <body class="flex justify-center h-screen">
+    <div class="bg-img"></div>
+    <div
+      class="container p-[15px] rounded-[10px] md:flex md:items-center md:justify-between my-auto"
+    >
+      <div>
+        <div
+          class="card p-[30px] max-md:p-[15px] bg-[url('../images/bg-card-front.png')] bg-cover rounded-[10px] text-white max-md:w-[288px] max-md:translate-y-[100px] relative max-md:z-10"
+        >
+          <img class="max-md:w-[50px]" src="./images/card-logo.svg" alt="" />
+          <div
+            class="cardNumber text-[35px] max-md:text-[22px] pt-[45px] max-md:pt-[35px] pb-[15px]"
+          >
+            0000 0000 0000 0000
+          </div>
+          <div class="name flex justify-between">
+            <p class="cardName">Jane</p>
+            <div>
+              <span class="expMonth">00</span>/<span class="expYear">00</span>
+            </div>
+          </div>
+        </div>
+        <div
+          class="relative max-md:scale-75 md:translate-x-20 md:translate-y-10 max-md:translate-y-[-180px]"
+        >
+          <img class="" src="./images/bg-card-back.png" alt="" />
+          <span class="cvc absolute z-10 right-[11%] top-[44%]">000</span>
+        </div>
+      </div>
+      <form class="max-w-[400px]">
+        <div>
+          <label>CARDHOLDER NAME</label>
+          <input
+            class="cardNameInput block outline-none border-[1px] border-gray-400 p-[10px] rounded-[5px] w-full my-[5px] focus:border-[#6448fe]"
+            type="text"
+            placeholder="e.g.Jane Appleseed"
+            maxlength="20"
+          />
+        </div>
+        <div>
+          <label>CARD NUMBER</label>
+          <input
+            class="cardNumberInput block outline-none border-[1px] border-gray-400 p-[10px] rounded-[5px] w-full my-[5px] focus:border-[#6448fe]"
+            type="text"
+            placeholder="e.g.1234 5678 9123 0000"
+            maxlength="16"
+            minlength="16"
+          />
+        </div>
+        <div>
+          <div class="flex gap-2">
+            <div class="date w-1/2">
+              <p>EXP. DATE(MM/YY)</p>
+              <div class="flex gap-2">
+                <div class="w-1/2">
+                  <input
+                  class="expMonthInput w-full outline-none border-[1px] border-gray-400 p-[10px] rounded-[5px] my-[5px] focus:border-[#6448fe]"
+                  type="text"
+                  placeholder="MM"
+                  maxlength="2"
+                  minlength="2"
+                />
+                </div>
+                <div class="w-1/2">
+                  <input
+                  class="expYearInput w-full outline-none border-[1px] border-gray-400 p-[10px] rounded-[5px] my-[5px] focus:border-[#6448fe]"
+                  type="text"
+                  placeholder="YY"
+                  maxlength="2"
+                  minlength="2"
+                />
+                </div>
+              </div>
+            </div>
+            <div class="cvcInput w-1/2">
+              <p>CVC</p>
+              <input
+                class="outline-none w-full border-[1px] border-gray-400 p-[10px] rounded-[5px] my-[5px] focus:border-[#6448fe]"
+                type="text"
+                placeholder="e.g. 123"
+                maxlength="3"
+                minlength="3"
+              />
+            </div>
+          </div>
+        </div>
+        <a
+          class="confirmBtn bg-[#21092f] block text-white p-[20px] rounded-[10px] text-center mt-[30px]"
+          href="#"
+          >Confirm</a
+        >
+      </form>
+      <div class="thanks md:w-[400px] text-center hidden  space-y-7">
+        <img class="m-auto" src="./images/icon-complete.svg" alt="" />
+        <h1 class="text-2xl">THANK YOU!</h1>
+        <p class="">We've added your card details</p>
+        <a
+          class="confirmBtn bg-[#21092f] block text-white p-[20px] rounded-[10px] text-center mt-[30px]"
+          href="#"
+          >Continue</a
+        >
+      </div>
+    </div>
+    <script>
+      let form = document.querySelector("form")
+      let cardNumber = document.querySelector(".cardNumber");
+      let cardNumberInput = document.querySelector(".cardNumberInput");
+      let cardName = document.querySelector(".cardName");
+      let cardNameInput = document.querySelector(".cardNameInput");
+      let expMonth = document.querySelector(".expMonth");
+      let expMonthInput = document.querySelector(".expMonthInput");
+      let expYear = document.querySelector(".expYear");
+      let expYearInput = document.querySelector(".expYearInput");
+      let cvcInput = document.querySelector(".cvcInput input");
+      let cvc = document.querySelector(".cvc")
+      let confirmBtn = document.querySelector(".confirmBtn");
+      let thanks = document.querySelector(".thanks")
+
+      cardNameInput.oninput = function () {
+        cardName.innerHTML = cardNameInput.value;
+      };
+      cardNumberInput.oninput = function () {
+        cardNumber.innerHTML = cardNumberInput.value.replace(/(\d{4})/g, '$1 ')
+      };
+      expMonthInput.oninput = function () {
+        expMonth.innerHTML = expMonthInput.value;
+      };
+      expYearInput.oninput = function () {
+        expYear.innerHTML = expYearInput.value;
+      };
+      cvcInput.oninput = function () {
+        cvc.innerHTML = cvcInput.value;
+      };
+
+      let errMsg = (e) => {
+        if(!e.value){
+          e.style.borderColor = "red"
+          e.parentElement.classList.add("blank")
+        }else{
+          if(e.value.length < e.getAttribute("minlength")){
+            e.parentElement.classList.add("incomplete")
+            e.style.borderColor = "red"
+          }else{
+            e.parentElement.classList.remove("blank");
+            e.parentElement.classList.remove("incomplete")
+            e.style.borderColor = "#6448fe";
+          }
+        }
+      };
+      confirmBtn.addEventListener("click", () => {
+        errMsg(cardNumberInput);
+        errMsg(cardNameInput);
+        errMsg(expMonthInput);
+        errMsg(expYearInput);
+        errMsg(cvcInput);
+        if(
+          cardNumberInput.value && cardNumberInput.value.length == cardNumberInput.getAttribute("minlength") &&
+          expMonthInput.value && expMonthInput.value.length == expMonthInput.getAttribute("minlength") &&
+          expYearInput.value && expYearInput.value.length == expYearInput.getAttribute("minlength") &&
+          cvcInput.value && cvcInput.value.length == cvcInput.getAttribute("minlength") &&
+          cardNameInput.value 
+          ){
+          form.classList.add("hidden")
+          thanks.classList.remove("hidden")
+        }
+      });
+    </script>
+    <!-- <script src="./main.js"></script> -->
+  </body>
+</html>
